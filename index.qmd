@@ -1,0 +1,130 @@
+---
+title: "Iconic artificial language learning in the field"
+subtitle: "Modifier-ordering experiment"
+authors: "Naomi Tachikawa Shapiro, Andrew A. Hedding, & Shane Steinert-Threlkeld"
+format:
+  html:
+    toc: true
+    toc-expand: 3
+    fontsize: 1.2em
+    fig-width: 8
+    fig-height: 3.5
+    theme: cosmo
+    embed-resources: true
+editor: visual
+include-after-body:
+  text: |
+    <!-- service worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+      }
+    </script>
+    <script src="service-worker.js"></script>'
+---
+
+## Intro
+
+This page explains how to run the **modifier-ordering experiment** from the paper "Iconic artificial language learning in the field: An experiment with San Martín Peras Mixtec speakers" (Shapiro, Hedding, & Steinert-Threlkeld 2024). We built the experiment to be conducted from a full-sized iPad while offline in the field.
+
+See [the paper](https://escholarship.org/uc/item/9ds5n1qs) for details about the project.
+
+See [the repo](https://github.com/tsnaomi/iconic-all-cogsci-2024) for the experiment code.
+
+See below for configuring & running the experiment offline.
+
+::: {.callout-important appearance="simple"}
+**Experiment link:** [https://tsnaomi.net/iconic-all-cogsci-24/field-ex](./field-ex){.uri}
+
+**Current version:** [\[v.0\]]{.badge .bg-primary style="margin-left:2px;font-size:0.9rem"}
+:::
+
+## Setting up for offline usage
+
+### Configure iPad settings
+
+-   Ensure that Safari's Reading List is stored offline: Go to `Settings > Safari`, then scroll to the bottom and toggle on **Automatically Save Offline** under where it says "Reading List".
+
+-   Ensure that downloads (participant responses!) are stored locally: Go to `Settings > Safari > Downloads`, then select the **On My iPad** option.
+
+    -   It might be okay to store the files on iCloud Drive, but this really depends on your iCloud settings. The most important thing is that iCloud doesn't try to automatically delete the files or lose track of the files during intermittent syncing.
+
+-   Prevent downloads from automatically deleting: Go to `Settings > Safari > Downloads > Remove Download List Items`, then select the **Manually** option.
+
+-   Disable tap-to-zoom: Go to `Settings > Accessibility > Zoom`, then toggle off the topmost slider.
+
+### Save the experiment
+
+Save the experiment link to Safari's Reading List:
+
+1.  Connect to Wifi.
+
+2.  Navigate to the experiment page in Safari. (Do NOT start the experiment.)
+
+3.  Click the ![](./_static/images/iOS-share.svg){height="1em"} icon in the toolbar, then select **Add to Reading List**:
+
+<img src="./_static/images/reading-list-1.png" align="center" style="width:80%;max-width:30rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+4.  Click the ![](./_static/images/sidebar.svg){height="1em"} icon to open the sidebar:
+
+<img src="./_static/images/reading-list-2.png" align="center" style="width:80%;max-width:30rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+5.  Navigate to the Reading List:
+
+<img src="./_static/images/reading-list-3.png" align="center" style="width:80%;max-width:30rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+6.  Click on the experiment link in the Reading List, then keep refreshing the page until you see a **version number**---e.g., \[v.0\]---appear in the Reading List:
+
+<img src="./_static/images/reading-list-4.png" align="center" style="width:80%;max-width:30rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+7.  Confirm that it says [ready!]{style="font-weight:bold;font-style:italic;color:limegreen"} on the screen (this may take a minute, since Safari may still be caching the experiment resources):
+
+<img src="./_static/images/ready.png" align="center" style="width:80%;max-width:30rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+8.  Close the experiment tab, then disconnect from Wifi.
+
+9.  Re-navigate to the Reading List, then reopen the experiment.
+
+10. **Walk through the experiment to confirm that it works offline.**
+
+    -   If the experiment doesn't run properly, reconnect to Wifi and try steps 4-9 again.
+
+**Lastly:** Run through steps 1--8 for this page as well, then confirm that you can access this page while offline.
+
+### Experiment versioning
+
+The experiment version number in the Reading List should match the version number at the top of this document (assuming you're connected to Wifi as you read this document). If the version number matches, then you have the latest version of the experiment loaded on the iPad. **If the version number doesn't match, repeat steps 6--10 above.**
+
+## Running the experiment
+
+1.  Lock the screen in vertical (portrait) orientation. This will maximize the size of the stimuli.
+
+2.  Navigate to the Reading List in Safari and click on the experiment link. (Tip: Close all other tabs.)
+
+3.  Wait until it says [ready!]{style="font-weight:bold;font-style:italic;color:limegreen"} on the screen.
+
+4.  Click [start experiment]{style="font-weight:bold;color:hotpink"}.
+
+5.  Run the experiment with the participant:
+
+    a.  Provide verbal instructions.
+
+    b.  Walk through the 4 demo trials & 4 practice trials with the participant.
+
+    c.  Instruct the participant to hand the iPad back to you when they see the tree:
+
+    <img src="./_static/images/tree.svg" align="center" style="width:8rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+    d.  Assist the participant as needed as they complete the study.
+
+6.  Once the participant returns the iPad, save their responses by clicking the pink download button:
+
+    <img src="./_static/images/download-pink.png" align="center" style="width:8rem;border:1px solid #ccc;display:block;margin:auto"/>
+
+7.  Record the participant's ID and condition on the paper questionnaire.
+
+## Viewing the responses
+
+Use the [Jayson app](https://jayson.app/) to view downloaded results. Each participant's responses are stored in a file called `<experiment-abbr>-<participant-id>.json`. (The participant IDs are randomly generated 3-character alphanumeric sequences.)
+
+To email the responses (e.g., to view a desktop), go to `Select`in the top right corner of the Jayson app, select the relevant files, then click `Share`at the bottom. Tip: Make sure your WiFi is on :)

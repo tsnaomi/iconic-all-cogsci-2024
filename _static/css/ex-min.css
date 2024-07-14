@@ -1,0 +1,130 @@
+:root {
+  --glow-dim: 0.45rem;
+  --guide: #fff09d;
+  --blank-line-width: 5px;
+}
+
+/* speed up glow */
+.jspsych-production-keyboard-glow,
+.jspsych-selection-glow button,
+.jspsych-madlib-glow button {
+  animation: guiding-glow 1.2s infinite alternate;
+}
+
+/* display trial number */
+#trial-n {
+  color: #333;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* turn the blanks into blocks  */
+#jspsych-madlib-blank,
+.jspsych-production-blank {
+  background-color: #eaeaff; /* lighter than lightest purple */
+}
+
+/* remove block background color upon correct */
+#jspsych-madlib-blank.jspsych-madlib-correct {
+  background-color: initial;
+}
+
+/* make backspace button blue */
+#jspsych-production-backspace-key .function {
+  color: #6495ED;
+}
+
+/* make backspace button gray when disabled */
+#jspsych-production-backspace-key:disabled .function {
+  color: var(--light-gray);
+}
+
+/* outline keyboard for visibility */
+#jspsych-production-keyboard {
+  border: 1px solid transparent;
+}
+.jspsych-production-keyboard-glow {
+  border-color: var(--light-gray) !important;
+}
+
+/* reduce size of demo image-selection choices */
+.demo .jspsych-selection-btn button img {
+  max-width: 24vw;
+}
+
+/* iOS particulars ------------------------------------- */
+
+  button {
+    padding: 0;
+  }
+
+  .jspsych-selection-btn button:hover,
+  .jspsych-selection-btn button:active,
+  .jspsych-selection-btn button:active,
+  .jspsych-madlib-btn button:hover,
+  .jspsych-madlib-btn button:active {
+    border-color: #ccc;
+  }
+
+  .jspsych-production-key {
+    color: black;
+  }
+
+  .jspsych-production-key:disabled {
+    color: var(--light-gray);
+  }
+
+/* for portrait-mode tablets --------------------------- */
+
+  @media (orientation: portrait) {
+
+    :root {
+      /* increase font size */
+      --iconic-sz: 5rem;
+      --iconic-sz-small: 4.75rem;
+      --iconic-sz-large: 5rem;
+      --proceed-btn-sz: 4.5rem;
+
+      /* reduce the vertical spacing between elements */
+      --global-bottom-spacing-prop: 0.5;
+
+      /* reduce spacing between production elements */
+      --production-bottom-spacing: 2.25rem;
+    }
+
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    #jspsych-selection-stimulus img,
+    #jspsych-madlib-stimulus img {
+      height: initial;
+      width: 95%;
+    }
+
+    .picture-selection #jspsych-selection-btngroup {
+      flex-direction: column;
+      max-width: initial;
+      max-height: initial;
+    }
+
+    .picture-selection .jspsych-selection-incorrect {
+      padding: 1px 0;
+    }
+
+    .picture-selection .jspsych-selection-btn button img {
+      width: initial;
+      max-width: initial;
+      max-width: 80vw;
+    }
+
+    .jspsych-production {
+      gap: var(--production-bottom-spacing);
+      height: initial;
+      max-height: 90vh;
+    }
+
+  }

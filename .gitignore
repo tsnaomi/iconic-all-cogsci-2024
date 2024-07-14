@@ -1,0 +1,12 @@
+*.DS_store
+*.json
+*.py
+*.pyc
+*.sh
+*.zip
+
+__*
+
+TODO
+.jshintrc
+.Rhistory

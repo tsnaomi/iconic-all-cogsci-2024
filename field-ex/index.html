@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iconic ALL | CogSci 2024</title>
+    <link rel="icon" type="image/x-icon" href="../_static/images/favicon.ico">
+    <!-- jsPsych -->
+    <link href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <!-- custom -->
+    <link rel="stylesheet" href="../_static/css/ex.css"/>
+    <link rel="stylesheet" href="../_static/css/ex-m20.css"/>
+    <link rel="stylesheet" href="../_static/css/ex-min.css"/>
+    <link rel="stylesheet" href="../_static/css/ex-m20-min.css"/>
+    <link rel="stylesheet" href="../_static/css/style.css"/>
+  </head>
+  <body class="jspsych-display-element">
+    <!-- hidden text (displayed in reading list) -->
+    <div id="hidden-version">
+      [v.0] modifier-ordering experiment (m20); click "start experiment" to launch
+    </div>
+    <!-- launch experiment -->
+    <div class="jspsych-content-wrapper">
+      <div id="jspsych-content" class="jspsych-content launch-experiment">
+        <p class="iconic">G</p>
+        <h1>modifiers</h1>
+        <a href="#" id="launch-experiment">start experiment</a>
+        <p id="ready"></p>
+      </div>
+    </div>
+    <!-- cache fonts & images -->
+    <div style="color:#fff;font-size:3px">
+      <span class="function">c</span>
+    </div>
+    <div id="preload">
+      <img src="../_static/images/tree.svg" height="0">
+      <img src="../_static/stimuli/ball.png" height="0">
+      <img src="../_static/stimuli/black-ball.png" height="0">
+      <img src="../_static/stimuli/black-feather.png" height="0">
+      <img src="../_static/stimuli/black-mug.png" height="0">
+      <img src="../_static/stimuli/feather.png" height="0">
+      <img src="../_static/stimuli/mug.png" height="0">
+      <img src="../_static/stimuli/red-ball.png" height="0">
+      <img src="../_static/stimuli/red-feather.png" height="0">
+      <img src="../_static/stimuli/red-mug.png" height="0">
+      <img src="../_static/stimuli/three-ball.png" height="0">
+      <img src="../_static/stimuli/three-black-ball.png" height="0">
+      <img src="../_static/stimuli/three-black-feather.png" height="0">
+      <img src="../_static/stimuli/three-black-mug.png" height="0">
+      <img src="../_static/stimuli/three-feather.png" height="0">
+      <img src="../_static/stimuli/three-mug.png" height="0">
+      <img src="../_static/stimuli/three-red-ball.png" height="0">
+      <img src="../_static/stimuli/three-red-feather.png" height="0">
+      <img src="../_static/stimuli/three-red-mug.png" height="0">
+      <img src="../_static/stimuli/two-ball.png" height="0">
+      <img src="../_static/stimuli/two-black-ball.png" height="0">
+      <img src="../_static/stimuli/two-black-feather.png" height="0">
+      <img src="../_static/stimuli/two-black-mug.png" height="0">
+      <img src="../_static/stimuli/two-feather.png" height="0">
+      <img src="../_static/stimuli/two-mug.png" height="0">
+      <img src="../_static/stimuli/two-red-ball.png" height="0">
+      <img src="../_static/stimuli/two-red-feather.png" height="0">
+      <img src="../_static/stimuli/two-red-mug.png" height="0">
+    </div>
+    <!-- jsPsych -->
+    <script src="https://unpkg.com/jspsych@7.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.2"></script>
+    <!-- custom -->
+    <script src="../_static/js/helpers.js"></script>
+    <script src="../_static/js/selection.js"></script>
+    <script src="../_static/js/madlib.js"></script>
+    <script src="../_static/js/production.js"></script>
+    <script src="../_static/js/responsive-production.js"></script>
+    <script src="../_static/js/ex.js"></script>
+    <script src="../_static/js/ex-m20-min.js"></script>
+    <!-- experiment -->
+    <script>
+      var jsPsych;
+
+      // once everything has loaded...
+      window.onload = function() {
+
+        // initialize the experiment when 'launch experiment' is clicked
+        document.getElementById("launch-experiment").onclick = function() {
+
+          // track trial number
+          var N = -8;
+          var nums = {
+            "-7": "d1", "-6": "d2", "-5": "d3", "-4": "d4",
+            "-3": "p1", "-2": "p2", "-1": "p3", "0": "p4",
+          };
+
+          // initialize jsPsych
+          jsPsych = initJsPsych({
+            // update trial number
+            on_trial_start: function(trial) {
+              N += 1;
+              document.getElementById("trial-n").innerHTML = nums[N] || N;
+            },
+            // display data at the end (if the completion page is commented out)
+            on_finish: function() {
+              jsPsych.data.displayData();
+            }
+          });
+
+          // generate participant ID
+          var id = jsPsych.randomization.randomID(3);
+
+          // assign condition
+          var condition = jsPsych.randomization.shuffle(["noun-initial", "noun-final"])[0];
+          console.log("CONDITION:", condition);
+
+          // add condition to data
+          jsPsych.data.addProperties({ condition: condition, });
+
+          // create timeline
+          var timeline = [];
+
+          // generate trials
+          var base = ex();
+          var data = m20(condition);
+
+          // demo
+          timeline.push(data.demo);
+
+          // practice
+          timeline.push(data.demo);
+
+          // block 1 - noun learning
+          timeline.push(data.block1);
+
+          // block 2 - modifier learning
+          timeline.push(data.block2);
+
+          // block 3 - one-modifier NP productions
+          timeline.push(data.block3);
+
+          // block 4 - two-modifier NP productions
+          timeline.push(data.block4);
+
+          // silent score
+          timeline.push(base.silent_score([3, 4], "n_mod"));
+
+          // handoff
+          timeline.push(base.handoff);
+
+          // completion page
+          timeline.push(base.complete("m20", id, condition));
+
+          // start the experiment
+          jsPsych.run(timeline);
+
+          // add trial number div
+          var trial_n = document.createElement("div");
+          trial_n.id = "trial-n";
+          document.body.append(trial_n);
+        };
+
+        // confirm that images, scripts, and stylesheets have loaded
+        document.getElementById("ready").innerHTML = "ready!";
+      };
+    </script>
+    <!-- service worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('../service-worker.js');
+      }
+    </script>
+    <script src="../service-worker.js"></script>
+  </body>
+</html>

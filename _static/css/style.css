@@ -1,0 +1,76 @@
+#hidden-version {
+  display: block;
+  height: 0px;
+  font-size: 0px;
+}
+
+#ready{
+  color: limegreen;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.launch-experiment {
+  font-size: 1.2rem;
+}
+
+.launch-experiment .iconic {
+  font-size: 8rem;
+  margin-top: 10rem;
+}
+
+.launch-experiment h1 {
+  margin: 5.5rem 0 4.5rem;
+}
+
+a {
+  color: hotpink;
+  font-weight: bold;
+}
+
+a:hover {
+  color: pink;
+}
+
+button#tree {
+  background-color: transparent;
+  border: none;
+  border-radius: 0 !important;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+button#tree:hover {
+  background-color: transparent;
+}
+
+button#tree img {
+  height: 300px;
+  display: inline-block;
+}
+
+#participant {
+  font-weight: bold;
+  font-size: 4rem;
+  margin-bottom: 4rem;
+}
+
+#participant .cond  {
+  color: #a8a8a8;
+}
+
+#participant-id .cond {
+  margin-left: 1rem;
+}
+
+#download-results a {
+  text-decoration: none;
+}
+
+#download-results .function {
+  font-weight: bold;
+  font-size: 5rem;
+}

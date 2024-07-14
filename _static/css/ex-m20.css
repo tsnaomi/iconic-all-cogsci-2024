@@ -1,0 +1,63 @@
+/* demonstrative stimuli ------------------------------- */
+
+  .flip {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+
+/* "red" ----------------------------------------------- */
+
+  .iconic-red {
+    color: #ea1943;
+    -webkit-text-stroke-width: 0.1rem;
+    -webkit-text-stroke-color: black;
+  }
+
+  button:disabled .iconic-red {
+    color: inherit;
+    -webkit-text-stroke-width: 0;
+    -webkit-text-stroke-color: none;
+  }
+
+  #jspsych-madlib-blank.jspsych-madlib-correct .iconic-red,
+  #jspsych-production-line.jspsych-production-correct .iconic-red {
+    color: var(--correct);
+    -webkit-text-stroke-width: 0;
+    -webkit-text-stroke-color: none;
+  }
+
+
+/* production answers ---------------------------------- */
+
+  #jspsych-production-answer .function {
+    padding: 0.7rem 0.7rem 0;
+  }
+
+  #jspsych-production-incorrect,
+  #jspsych-production-correct {
+    color: initial;
+    border-width: var(--answer-border-width);
+    border-style: solid;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: initial;
+  }
+
+  #jspsych-production-incorrect,
+  #jspsych-production-correct-container {
+    float: none;
+  }
+
+  #jspsych-production-incorrect {
+    border-color: var(--incorrect);
+    padding-left: calc(var(--letter-spacing-prop) * var(--iconic-sz-small));
+  }
+
+  #jspsych-production-correct {
+    border-color: var(--correct);
+  }
+
+  #jspsych-production-correct:after {
+    content: none;
+    margin-right: 0;
+  }

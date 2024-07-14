@@ -1,0 +1,552 @@
+:root {
+  --glow-dim: 0.3rem;
+  --guide: #d7d6ff; /* lightest purple */
+  --answer: #52d681;
+  --correct: #29b05a;
+  --incorrect: red;
+  --light-gray: #ddd;
+  --gray: #ccc;
+  --keyboard: #eee;
+  --dark-purple: #6d67e4;
+  --light-purple: #b1afff;
+  --lightest-purple: #d7d6ff;
+  --iconic-sz: 4.4rem;
+  --iconic-sz-small: 3.4rem;
+  --iconic-sz-large: 4.4rem;
+  --letter-spacing-prop: 0.45;
+  --btn-padding-prop: 0.15;
+  --forced-choice-margin: 1.2rem;
+  --answer-border-width: 3px;
+  --blank-line-width: 3px;
+  --blank-line-padding: 0.4rem;
+  --blank-width-prop: 1.05;
+  --proceed-btn-sz: 3.5rem;
+  --global-bottom-spacing-prop: 0.8;
+  --production-bottom-spacing: 2rem;
+}
+
+@font-face {
+  font-family: 'Iconic';
+  src:  url('../fonts/Iconic.eot?ospu3v');
+  src:  url('../fonts/Iconic.eot?ospu3v#iefix') format('embedded-opentype'),
+    url('../fonts/Iconic.ttf?ospu3v') format('truetype'),
+    url('../fonts/Iconic.woff?ospu3v') format('woff'),
+    url('../fonts/Iconic.svg?ospu3v#Iconic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Functions';
+  src:  url('../fonts/Functions.eot?631ywg');
+  src:  url('../fonts/Functions.eot?631ywg#iefix') format('embedded-opentype'),
+    url('../fonts/Functions.ttf?631ywg') format('truetype'),
+    url('../fonts/Functions.woff?631ywg') format('woff'),
+    url('../fonts/Functions.svg?631ywg#Functions') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.iconic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Iconic' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* better font rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* font size */
+  font-size: var(--iconic-sz);
+  vertical-align: middle;
+}
+
+.function {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Functions' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* better font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* diable double-tap to zoom */
+button {
+  touch-action: manipulation;
+}
+
+p {
+  margin: 0;
+}
+
+#jspsych-selection-stimulus,
+#jspsych-madlib-stimulus img,
+#jspsych-madlib-caption {
+  margin-bottom: calc(var(--global-bottom-spacing-prop) * var(--iconic-sz));
+}
+
+#jspsych-selection-stimulus img,
+#jspsych-madlib-stimulus img,
+#jspsych-production-stimulus img {
+  height: 45vh;
+  border: 2px solid var(--gray);
+  vertical-align: middle;
+}
+
+.jspsych-madlib-btn .iconic,
+.jspsych-selection-btn .iconic,
+.jspsych-production-key {
+  padding: calc(var(--btn-padding-prop) * var(--iconic-sz));
+}
+
+/* font sizing & spacing -------------------------------
+
+    iconic-sz: 
+      - icon selections
+      - madlib selections & caption
+      - production keyboard
+
+    iconic-sz-small:
+      - production (in)correct answers
+
+    iconic-sz-large:
+      - image-selection captions
+      - production line + prompt
+
+  */
+
+  #jspsych-production-correct,
+  #jspsych-production-incorrect {
+    font-size: var(--iconic-sz-small);
+    letter-spacing: calc(var(--letter-spacing-prop) * var(--iconic-sz-small));
+    padding-left: calc(var(--letter-spacing-prop) * var(--iconic-sz-small));
+  }
+
+  #jspsych-selection-stimulus .iconic,
+  #jspsych-production-prompt,
+  #jspsych-production-line {
+    font-size: var(--iconic-sz-large);
+    letter-spacing: calc(var(--letter-spacing-prop) * var(--iconic-sz-large));
+  }
+
+  #jspsych-selection-stimulus .iconic {
+    padding-left: calc(var(--letter-spacing-prop) * var(--iconic-sz-large));
+  }
+
+  #jspsych-production-line-container {
+    margin-right: calc(-1 * var(--letter-spacing-prop) * var(--iconic-sz-large));
+  }
+
+  .jspsych-production-blank {
+    margin-right: calc(var(--letter-spacing-prop) * var(--iconic-sz-large));
+  }
+
+  #jspsych-production-backspace-key .function,
+  #jspsych-production-space-key .function {
+    font-size: var(--iconic-sz);
+  }
+
+  #jspsych-production-answer .function {
+    font-size: var(--iconic-sz-small);
+  }
+
+/* glows ----------------------------------------------- */
+
+  .jspsych-production-keyboard-glow,
+  .jspsych-selection-glow button,
+  .jspsych-madlib-glow button {
+    animation: guiding-glow 1.5s infinite alternate;
+  }
+
+  @keyframes guiding-glow {
+    from {
+      box-shadow: 0 0 var(--glow-dim) calc(0 - var(--glow-dim)) var(--guide);
+    }
+    to {
+      box-shadow: 0 0 var(--glow-dim) var(--glow-dim) var(--guide);
+    }
+  }
+
+  .jspsych-selection-answer button,
+  .jspsych-madlib-answer button {
+    animation: shakeY 1.25s, answer-glow 1.5s infinite alternate;
+  }
+
+  /* from animate.css */
+  @keyframes shakeY {
+    from, to {
+      transform: translate3d(0, 0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translate3d(0, -10px, 0);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translate3d(0, 10px, 0);
+    }
+  }
+
+  @keyframes answer-glow {
+    from {
+      box-shadow: 0 0 var(--glow-dim) calc(0 - var(--glow-dim)) var(--answer);
+    }
+    to {
+      box-shadow: 0 0 var(--glow-dim) var(--glow-dim) var(--answer);
+    }
+  }
+
+/* proceed button -------------------------------------- */
+
+  #proceed,
+  #jspsych-instructions-next,
+  #jspsych-html-button-response-button-0 button,
+  #jspsych-production-submit {
+    color: #fff;
+    width: 3.5rem;
+    height: 3.5rem;
+    width: var(--proceed-btn-sz);
+    height: var(--proceed-btn-sz);
+    border-radius: 50%;
+    border: 3px var(--dark-purple) solid;
+    background-color: var(--light-purple);
+  }
+
+  #proceed,
+  #jspsych-instructions-next,
+  #jspsych-html-button-response-button-0 button {
+     margin-top: 2.6rem;
+  }
+
+  #proceed .function,
+  #jspsych-instructions-next .function,
+  #jspsych-html-button-response-button-0 button .function,
+  #jspsych-production-submit .function {
+    font-size: calc(0.7 * var(--proceed-btn-sz));
+    font-weight: bold;
+  }
+
+  #proceed:hover,
+  #proceed:active,
+  #jspsych-instructions-next:hover,
+  #jspsych-instructions-next:active,
+  #jspsych-html-button-response-button-0 button:hover,
+  #jspsych-html-button-response-button-0 button:active,
+  #jspsych-production-submit:hover,
+  #jspsych-production-submit:active {
+    color: var(--dark-purple);
+    background-color: var(--lightest-purple);
+  }
+
+  #proceed:disabled,
+  #proceed:disabled:hover,
+  #jspsych-production-submit:disabled,
+  #jspsych-production-submit:disabled:hover {
+    cursor: not-allowed;
+    color: #fff;
+    border: 3px var(--light-gray) solid;
+    background-color: var(--light-gray);
+  }
+
+/* forced-choice buttons ------------------------------- */
+
+  .jspsych-selection-btn,
+  .jspsych-madlib-btn {
+    display: inline-block;
+    margin: 0 var(--forced-choice-margin) var(--forced-choice-margin);
+  }
+
+  #jspsych-selection-btngroup button,
+  #jspsych-madlib-btngroup button {
+    margin-top: var(--answer-border-width);
+    margin-bottom: var(--answer-border-width);
+  }
+
+  .jspsych-selection-correct button,
+  .jspsych-selection-incorrect button,
+  .jspsych-madlib-incorrect button {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .jspsych-selection-incorrect,
+  .jspsych-madlib-incorrect {
+    margin-left: calc(var(--forced-choice-margin) - var(--answer-border-width) + 1px);
+    margin-right: calc(var(--forced-choice-margin) - var(--answer-border-width) + 1px);
+  }
+
+  .jspsych-selection-correct {
+    margin-left: calc(var(--forced-choice-margin) - var(--answer-border-width));
+    margin-right: calc(var(--forced-choice-margin) - var(--answer-border-width));
+  }
+
+  .jspsych-selection-btn button:hover,
+  .jspsych-selection-btn button:active,
+  .jspsych-selection-btn button:active,
+  .jspsych-madlib-btn button:hover,
+  .jspsych-madlib-btn button:active {
+    background-color: #fff;
+    border-color: #a0a0a0;
+  }
+
+  .jspsych-selection-incorrect button,
+  .jspsych-selection-incorrect button:disabled,
+  .jspsych-madlib-incorrect button,
+  .jspsych-madlib-incorrect button:disabled {
+    border: var(--answer-border-width) var(--incorrect) solid !important;
+  }
+
+  .jspsych-selection-btn button:disabled:hover,
+  .jspsych-madlib-btn button:disabled:hover {
+    border-color: #ccc;
+    background-color: #eee;
+  }
+
+/* blanks ---------------------------------------------- */
+
+  /* todo: color posterity */
+  #jspsych-madlib-blank,
+  .jspsych-production-blank {
+    border-bottom: var(--blank-line-width) solid var(--lightest-purple);
+    display: inline-block;
+  }
+
+  #jspsych-madlib-blank,
+  .jspsych-production-blank:nth-child(1) {
+    border-bottom-color: var(--dark-purple);
+  }
+
+/* selection ------------------------------------------- */
+
+  .jspsych-selection-correct button {
+    border: calc(var(--answer-border-width) + 1px) var(--correct) solid !important;
+  }
+
+  .picture-selection #jspsych-selection-btngroup {
+    display: flex;
+    max-width: calc(20 * var(--iconic-sz-large));
+    max-height: 40vh;
+  }
+
+  .picture-selection .jspsych-selection-btn {
+    flex: 1 1 0px;
+  }
+
+  /* todo: size posterity */
+  .picture-selection .jspsych-selection-btn button img {
+    max-width: 35vw;
+  }
+
+/* madlib ---------------------------------------------- */
+
+  #jspsych-madlib-caption {
+    height: calc(var(--blank-line-width) + var(--blank-line-padding) + var(--iconic-sz));
+  }
+
+  .jspsych-madlib-prompt {
+    vertical-align: top;
+  }
+
+  #jspsych-madlib-blank {
+    margin-top: calc(-1 * var(--blank-line-padding));
+    height: calc(2 * var(--blank-line-padding) + var(--iconic-sz));
+    width: calc(var(--blank-width-prop) * var(--iconic-sz));
+  }
+
+  #jspsych-madlib-blank.jspsych-madlib-correct {
+    height: initial;
+    color: var(--correct);
+    border-color: var(--correct);
+    padding-bottom: var(--blank-line-padding);
+  }
+
+  .jspsych-madlib-hide {
+    opacity: 0;
+  }
+
+/* production ------------------------------------------ */
+
+  .jspsych-production {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--production-bottom-spacing);
+  }
+
+  #jspsych-production-stimulus {
+    flex-shrink: 1;
+    flex-basis: auto;
+    max-height: 45vh; /* see line 115ish */
+    max-width: 90vw;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  #jspsych-production-stimulus img {
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #jspsych-production-answer,
+  #jspsych-production-line-container,
+  #jspsych-production-keyboard,
+  #jspsych-production-submit {
+    flex-shrink: 0;
+  }
+
+  #jspsych-production-answer:empty { /* glorious */
+    display: none;
+  }
+
+  #jspsych-production-line-container,
+  #jspsych-production-line-line {
+    height: calc(var(--blank-line-width) + var(--blank-line-padding) + var(--iconic-sz-large));
+  }
+
+  #jspsych-production-prompt,
+  #jspsych-production-line {
+    vertical-align: top;
+  }
+
+  .jspsych-production-blank {
+    margin-top: calc(-1 * var(--blank-line-padding));
+    height: calc(2 * var(--blank-line-padding) + var(--iconic-sz-large));
+    width: var(--iconic-sz-large);
+  }
+
+  /* todo: color posterity */
+  .blink-caret {
+    margin-right: var(--iconic-sz-large);
+    /* border-right: 3px solid var(--light-gray); */
+    border-right: 3px solid var(--light-purple);
+    animation: blink-caret 0.6s step-end infinite;;
+  }
+
+  /* todo: color posterity */
+  @keyframes blink-caret {
+    from, to { 
+      border-color: transparent;
+    }
+    50% {
+  /*      border-color: var(--light-gray);*/
+      border-color: var(--light-purple);
+    }
+  }
+
+  #jspsych-production-answer {
+    min-height: calc(var(--iconic-sz-small));
+    max-width: 90vw;
+  }
+
+  /* todo: color posterity */
+  #jspsych-production-answer .function {
+    color: var(--gray);
+  }
+
+  #jspsych-production-answer span {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #jspsych-production-incorrect {
+    color: var(--incorrect);
+    padding-left: 0px;
+    margin-bottom: var(--blank-line-padding);
+    float: left;
+  }
+
+  #jspsych-production-correct-container {
+    float: right;
+  }
+
+  #jspsych-production-correct-container span {
+    float: left;
+  }
+
+  #jspsych-production-correct {
+    color: var(--correct);
+    margin-bottom: var(--blank-line-padding);
+  }
+
+  #jspsych-production-correct:after {
+    content: " ";
+    margin-right: calc(-1 * var(--letter-spacing-prop) * var(--iconic-sz-small));
+  }
+
+  #jspsych-production-prompt.jspsych-production-correct,
+  #jspsych-production-line.jspsych-production-correct {
+    color: var(--correct);
+  }
+
+  #jspsych-production-counter {
+    position: absolute;
+    font-size: calc(0.5 * var(--proceed-btn-sz));
+    bottom: calc(5vh + (0.34 * var(--proceed-btn-sz)));
+    left: calc(50% + var(--proceed-btn-sz));
+  }
+
+/* keyboard -------------------------------------------- */
+
+  #jspsych-production-keyboard {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.75rem 0.6rem;
+    box-sizing: border-box;
+    border-radius: 0.4rem;
+    background: var(--keyboard);
+    box-shadow: 0px 1px 0px 2px var(--light-gray);
+    flex-wrap: wrap;
+  }
+
+  #jspsych-production-keyboard-top {
+    display: flex;
+  }
+
+  #jspsych-production-keyboard-top button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  #jspsych-production-keyboard-bottom {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: calc(2 * var(--btn-padding-prop) * var(--iconic-sz));
+  }
+
+  .jspsych-production-key {
+    margin: 0 calc(var(--btn-padding-prop) * var(--iconic-sz));
+    border: none;
+    border-radius: 0.3rem;
+    background: #fff;
+    box-shadow: 0px 1px 0px 2px var(--light-gray);
+    min-width: calc((1 + 2 * var(--btn-padding-prop)) * var(--iconic-sz) + 2px);
+    flex: 1 1 0px;
+  }
+
+  .jspsych-production-key:active {
+    box-shadow: none;
+    transform: translate(0.05rem, 0.05rem);
+  }
+
+  #jspsych-production-space-key {
+    width: calc(2.8 * var(--iconic-sz));
+  }
