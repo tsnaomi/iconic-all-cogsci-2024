@@ -32,7 +32,8 @@ var m20 = (function() {
   var FIRST_ORDER = "";
 
   // set global linger duration
-  var linger = 900;
+  var linger = 900; // used in field!
+  linger = 600; // speed up for CogSci demo!
 
   // lexical information
   var nouns = ["ball", "feather", "mug"];
