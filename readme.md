@@ -1,8 +1,8 @@
-# Iconic artificial language learning *in the field*
+# Iconic artificial language learning in the field
 
 Yay! You've found the experiment code for the paper [Iconic artificial language learning in the field: An experiment with San Martín Peras Mixtec speakers](https://escholarship.org/uc/item/9ds5n1qs) (Shapiro, Hedding, & Steinert-Threlkeld 2024), slated for presentation at *CogSci 2024*.
 
-This experiment was built to be conducted from a full-sized iPad while offline in the field. For instructions on configuring the experiment for offline usage, see [here](https://tsnaomi.github.io/iconic-all-cogsci-2024).
+This experiment was built to be conducted on a full-sized iPad while offline in the field. For instructions on configuring the experiment for offline usage, see [here](https://tsnaomi.github.io/iconic-all-cogsci-2024).
 
 To try out the experiment, head [here](https://tsnaomi.github.io/iconic-all-cogsci-2024/field-ex). Upon completing the experiment, you will be given the opportunity to download your responses as a JSON file. No responses are stored on the site.
 
@@ -20,7 +20,7 @@ The visual stimuli are located in `_static/stimuli`. They are reconstructions of
 
 <img src=_static/images/_readme-iconic-table.png alt="Iconic artifical language from Shapiro, Hedding, & Steinert-Threlkeld (2024)" width=400/>
 
-We implemented the iconic artificial language as an `Iconic` font, located in `_static/fonts`. The font was created by uploading pictographs as SVG files to [Icomoon](https://icomoon.io/). The noun pictographs adapt icons from Flaticon.
+We implemented the iconic artificial language as an `Iconic` font, located in `_static/fonts`. The font was created by uploading pictographs as SVG files to [IcoMoon](https://icomoon.io/). The noun pictographs adapt icons from Flaticon.
 
 Here is the character-to-pictograph mapping:
 
